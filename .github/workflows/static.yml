@@ -27,12 +27,12 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build image
-        run: ./scripts/docker_build.sh
+        run: docker build -t fortinet-hugo . --target=prod -f DockerfileGHA
       - name: Build static app
         run: ./scripts/docker_run.sh build
       - name: Setup Pages
