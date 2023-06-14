@@ -16,3 +16,4 @@ ADD https://github.com/FortinetCloudCSE/CentralRepo.git#main /home/CentralRepo
 WORKDIR /home/CentralRepo
 
 ENTRYPOINT ["/home/CentralRepo/scripts/local_copy.sh"]
+CMD sleep infinity
