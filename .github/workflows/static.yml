@@ -32,9 +32,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Build image
-        run: docker build -t fortinet-hugo . --target=prod -f DockerfileGHA
+        run: DOCKER_BUILDKIT=1 docker build -t fortinet-hugo . --target=prod
       - name: Build static app
-        run: ./scripts/docker_run.sh build
+        run: |
+         CONT_ID=$(docker run -d -v $(pwd)/config.toml:/home/CentralRepo/config.toml fortinet-hugo:latest build)
+         docker cp $CONT_ID:/home/CentralRepo/public ${{github.workspace}}/docs
+         docker stop $CONT_ID
+         docker rm $CONT_ID
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
