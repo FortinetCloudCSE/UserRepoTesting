@@ -5,7 +5,7 @@ weight: 1
 archetype: home
 ---
 
-### Welcome! testing 
+### Welcome! testing again 
 
 This site will explain how to use the [Hugo Web Framework]("https://gohugo.io/") & the ["reLearn" Theme]("https://mcshelby.github.io/hugo-theme-relearn/index.html") to effectively organize & deliver Fortinet TEC Workshops & Product demos in a consistent, simple, and visually appealing format.
 
