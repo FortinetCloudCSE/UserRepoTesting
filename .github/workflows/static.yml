@@ -34,7 +34,7 @@ jobs:
       - name: Clean Docker cache
         run: docker system prune
       - name: Build image
-        run: DOCKER_BUILDKIT=1 docker build --no-cache -t fortinet-hugo . --target=prod -f ${{github.workspace}}/DockerfileGHA
+        run: DOCKER_BUILDKIT=1 docker build -t fortinet-hugo . -f ${{github.workspace}}/DockerfileGHA
       - name: Build static app
         run: |
          CONT_ID=$(docker run -d -it -v ${{github.workspace}}/layouts:/home/UserRepo/layouts \
@@ -44,7 +44,7 @@ jobs:
          docker cp $CONT_ID:/home/CentralRepo/public ${{github.workspace}}/docs
          docker stop $CONT_ID
          docker rm $CONT_ID
-      - name: Clean Docker cache
+      - name: Clear Docker cache
         run: docker builder prune -f
       - name: Setup Pages
         uses: actions/configure-pages@v3
